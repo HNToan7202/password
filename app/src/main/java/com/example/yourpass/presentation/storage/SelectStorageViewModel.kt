@@ -2,21 +2,15 @@ package com.example.yourpass.presentation.storage
 
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.yourpass.data.entity.FileDescriptor
-import com.example.yourpass.domain.interactor.storagelist.StorageListInteractor
 import com.ivanovsky.passnotes.data.entity.FSType
 import com.ivanovsky.passnotes.data.entity.FSType.EXTERNAL_STORAGE
 import com.ivanovsky.passnotes.data.entity.FSType.INTERNAL_STORAGE
-import com.ivanovsky.passnotes.data.entity.FSType.UNDEFINED
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class SelectStorageViewModel @Inject constructor(
-    private val interactor: StorageListInteractor,
-) : ViewModel() {
+class SelectStorageViewModel @Inject constructor() : ViewModel() {
 
     val selectedIndex = mutableIntStateOf(-1) // Trạng thái chỉ mục được chọn
 
@@ -29,7 +23,7 @@ class SelectStorageViewModel @Inject constructor(
 //    )
 
     init {
-        loadData()
+//        loadData()
     }
 
     // Hàm xử lý khi người dùng chọn một mục
@@ -54,36 +48,36 @@ class SelectStorageViewModel @Inject constructor(
             }
         }
     }
-
-    private fun loadData() {
-
-        viewModelScope.launch {
-            val getOptionsResult = interactor.getStorageOptions()
-            if (getOptionsResult.isSucceededOrDeferred) {
-                val options = getOptionsResult.obj
-                storageOptions = options
-
-                val cellModels = modelFactory.createCellModel(options)
-                setCellViewModels(viewModelFactory.createCellViewModels(cellModels, eventProvider))
-
-                setScreenState(ScreenState.data())
-            } else {
-                setErrorState(getOptionsResult.error)
-            }
-        }
-    }
-
-    private fun onStorageOptionClicked(fsType: FSType) {
-        val selectedOption = storageOptions?.find { fsType == it.root.fsAuthority.type } ?: return
-        this.selectedOption = selectedOption
-
-        when (selectedOption.root.fsAuthority.type) {
-            INTERNAL_STORAGE, E guygtftXTERNAL_STORAGE -> {
-                onDeviceStorageSelected(selectedOption.root, selectedOption.root.fsAuthority.type)
-            }
-
-            UNDEFINED -> {}
-        }
-    }
+//
+//    private fun loadData() {
+//
+//        viewModelScope.launch {
+//            val getOptionsResult = interactor.getStorageOptions()
+//            if (getOptionsResult.isSucceededOrDeferred) {
+//                val options = getOptionsResult.obj
+//                storageOptions = options
+//
+//                val cellModels = modelFactory.createCellModel(options)
+//                setCellViewModels(viewModelFactory.createCellViewModels(cellModels, eventProvider))
+//
+//                setScreenState(ScreenState.data())
+//            } else {
+//                setErrorState(getOptionsResult.error)
+//            }
+//        }
+//    }
+//
+//    private fun onStorageOptionClicked(fsType: FSType) {
+//        val selectedOption = storageOptions?.find { fsType == it.root.fsAuthority.type } ?: return
+//        this.selectedOption = selectedOption
+//
+//        when (selectedOption.root.fsAuthority.type) {
+//            INTERNAL_STORAGE, E guygtftXTERNAL_STORAGE -> {
+//                onDeviceStorageSelected(selectedOption.root, selectedOption.root.fsAuthority.type)
+//            }
+//
+//            UNDEFINED -> {}
+//        }
+//    }
 
 }

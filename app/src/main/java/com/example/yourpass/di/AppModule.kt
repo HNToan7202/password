@@ -8,7 +8,7 @@ import dagger.hilt.components.SingletonComponent
 
 
 @Module
-@InstallIn(SingletonComponent::class) // Cung cấp context cho toàn bộ ứng dụng
+@InstallIn(SingletonComponent::class)
 object AppModule {
 
     @Provides

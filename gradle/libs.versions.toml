@@ -17,6 +17,7 @@ material = "1.12.0"
 comGoogleDevtoolsKspGradlePlugin = "2.0.21-1.0.25"
 hilt-version = "2.56.2"
 navigationCompose = "2.9.0"
+okio = "3.10.2"
 timber = "5.0.1"
 
 [libraries]
@@ -44,6 +45,7 @@ com-google-devtools-ksp-gradle-plugin = { module = "com.google.devtools.ksp:com.
 
 hilt-android = { group = "com.google.dagger", name = "hilt-android", version.ref = "hilt-version" }
 hilt-compiler = { group = "com.google.dagger", name = "hilt-android-compiler", version.ref = "hilt-version" }
+okio = { module = "com.squareup.okio:okio", version.ref = "okio" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
 [plugins]

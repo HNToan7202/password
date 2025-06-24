@@ -11,6 +11,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.yourpass.Screen.StorageListScreen
+import com.example.yourpass.presentation.home.HomeScreen
 import com.example.yourpass.presentation.main.MainState
 import com.example.yourpass.presentation.main.MainViewModel
 import com.example.yourpass.presentation.newdb.NewDatabaseScreen
@@ -19,6 +20,7 @@ import com.example.yourpass.presentation.storage.SelectStorageScreen
 sealed class Screen(val route: String) {
     object NewDatabaseScreen : Screen("NewDatabaseScreen")
     object StorageListScreen : Screen("StorageListScreen")
+    object HomeScreen : Screen("Home")
 }
 
 
@@ -47,6 +49,14 @@ fun Navigation() {
 
         composable(Screen.StorageListScreen.route) {
             SelectStorageScreen(
+                navController = navController,
+                viewModel = hiltViewModel(),
+                mainViewModel = mainViewModel
+            )
+        }
+
+        composable(Screen.HomeScreen.route) {
+            HomeScreen(
                 navController = navController,
                 viewModel = hiltViewModel(),
                 mainViewModel = mainViewModel

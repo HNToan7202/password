@@ -33,29 +33,29 @@ fun SelectStorageScreen(
         )
 
         // List of storage options
-        LazyColumn(
-            modifier = Modifier.fillMaxWidth()
-        ) {
-            itemsIndexed(viewModel.storageOptions) { index, storageOption ->
-                StorageOptionItem(
-                    title = storageOption.title,
-                    isSelected = viewModel.selectedIndex.intValue == index,
-                    onClick = {
-                        viewModel.onItemClicked(index)
-                        if (index == 0) {
-
-                            navController?.previousBackStackEntry
-                                ?.savedStateHandle
-                                ?.set("selectedIndex", 0)
-
-                            navController?.popBackStack()  // Navigate back
-                        }
-
-                    },
-                    requiresPermission = storageOption.requiresPermission
-                )
-            }
-        }
+//        LazyColumn(
+//            modifier = Modifier.fillMaxWidth()
+//        ) {
+//            itemsIndexed(viewModel.storageOptions) { index, storageOption ->
+//                StorageOptionItem(
+//                    title = storageOption.title,
+//                    isSelected = viewModel.selectedIndex.intValue == index,
+//                    onClick = {
+//                        viewModel.onItemClicked(index)
+//                        if (index == 0) {
+//
+//                            navController?.previousBackStackEntry
+//                                ?.savedStateHandle
+//                                ?.set("selectedIndex", 0)
+//
+//                            navController?.popBackStack()  // Navigate back
+//                        }
+//
+//                    },
+//                    requiresPermission = storageOption.requiresPermission
+//                )
+//            }
+//        }
     }
 }
 

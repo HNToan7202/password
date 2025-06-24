@@ -9,15 +9,19 @@ import androidx.lifecycle.SavedStateHandle
 import androidx.lifecycle.ViewModel
 import com.example.yourpass.Screen
 import com.example.yourpass.data.entity.FileDescriptor
+import com.example.yourpass.presentation.base.UIState
+import com.example.yourpass.presentation.base.UIStateType
 import com.example.yourpass.utils.FileUtils
 import com.example.yourpass.utils.FileUtils.createPath
 import dagger.hilt.android.lifecycle.HiltViewModel
 import java.util.UUID
 import javax.inject.Inject
+import androidx.compose.runtime.State
+import com.example.yourpass.presentation.base.BaseViewModel
 
 @HiltViewModel
 class NewDatabaseViewModel @Inject constructor(
-) : ViewModel() {
+) : BaseViewModel() {
     var fileName by mutableStateOf("")
     var password by mutableStateOf("")
     var confirmPassword by mutableStateOf("")
@@ -66,7 +70,7 @@ class NewDatabaseViewModel @Inject constructor(
     }
 
 
-     fun createDbFile(): FileDescriptor {
+    fun createDbFile(): FileDescriptor {
         val selectedStorage = selectedStorage ?: throw IllegalStateException()
 
         return when (selectedStorage) {

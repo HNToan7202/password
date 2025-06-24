@@ -74,4 +74,6 @@ dependencies {
 
 
     implementation (libs.commons.lang3)
+
+    implementation (libs.okio)
 }

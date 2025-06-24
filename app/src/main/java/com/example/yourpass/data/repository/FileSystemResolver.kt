@@ -5,11 +5,8 @@ import com.example.yourpass.data.entity.FSAuthority
 import com.example.yourpass.data.repository.file.FileSystemProvider
 import com.example.yourpass.data.repository.file.RegularFileSystemProvider
 import com.ivanovsky.passnotes.data.entity.FSType
-import dagger.hilt.android.qualifiers.ApplicationContext
-import javax.inject.Inject
-import javax.inject.Singleton
 
-open class FileSystemResolver @Inject constructor(
+open class FileSystemResolver(
     protected open val factories: Map<FSType, Factory>,
     private val context: Context
 ) {
@@ -44,7 +41,7 @@ open class FileSystemResolver @Inject constructor(
         }
     }
 
-    class InternalFileSystemFactory @Inject constructor(
+    class InternalFileSystemFactory(
         private val context: Context
     ) : Factory {
         override fun createProvider(fsAuthority: FSAuthority): FileSystemProvider {
